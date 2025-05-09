@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ duration: 1200, once: true });
+      // Confetti on page load (avoiding overlap with button confetti)
+      setTimeout(() => {
+        confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+      }, 500);
+
+      // Keep music playing across pages using localStorage
+      const audio = document.getElementById('bg-music');
+      
+      // Check if music was previously started
+      if (localStorage.getItem('musicStarted') === 'true') {
+        audio.play();
+        audio.muted = false;
+      } else {
+        audio.muted = true;
+        audio.play().then(() => {
+          audio.muted = false;
+          localStorage.setItem('musicStarted', 'true'); // Store that music has started
+        }).catch(() => {
+          // Fallback: requires user interaction
+          const btn = document.createElement('button');
+          btn.textContent = "Start Music";
+          btn.style.position = "fixed";
+          btn.style.top = "20px";
+          btn.style.left = "20px";
+          btn.style.zIndex = "10000";
+          btn.onclick = () => {
+            audio.play();
+            localStorage.setItem('musicStarted', 'true'); // Store that music has started
+            btn.remove();
+          };
+          document.body.appendChild(btn);
+        });
+      }
+    });
+  </script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      text-align: center;
+      animation: fadeIn 2s ease-out;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(45deg, #1e3c72, #2a5298, #4e9fdd);
+      animation: gradientMove 10s ease infinite;
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-bottom: 5px solid #00bcd4;
+      animation: slideIn 1s ease-out;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3.5rem;
+      color: #00bcd4;
+      text-transform: uppercase;
+      animation: bounceIn 1s ease-out;
+    }
+
+    .small {
+      font-size: 1.4rem;
+      color: #ff4081;
+    }
+
+    main {
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-top: 20px;
+      color: #ff4081;
+    }
+
+    p {
+      font-size: 1.3em;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+
+    .button-container {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      color: #fff;
+      background-color: #00bcd4;
+      border-radius: 15px;
+      border: none;
+      text-decoration: none;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s;
+      width: 80%;
+      max-width: 300px;
+      box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+    }
+
+    .button:hover {
+      background-color: #ff4081;
+      transform: scale(1.1);
+      box-shadow: 0 4px 20px rgba(0, 188, 212, 0.7);
+    }
+
+    footer {
+      background-color: #2a5298;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #fff;
+      animation: bounceFooter 1.5s ease-out infinite;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background: linear-gradient(45deg, #1e3c72, #2a5298, #4e9fdd);
+      }
+      50% {
+        background: linear-gradient(45deg, #ff7e5f, #feb47b, #ff8c00);
+      }
+      100% {
+        background: linear-gradient(45deg, #1e3c72, #2a5298, #4e9fdd);
+      }
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes bounceFooter {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bg-music" src="song.mp3" autoplay loop></audio>
+  <header>
+    <h1>💖 Happy Birthday Boby 💖<br>
+      <span class="small">🎉💖 Happy Birthday to the most amazing, beautiful, and wonderful person in my life<br>Boby 💖🎉</span>
+    </h1>
+  </header>
+
+  <main>
+    <h2 data-aos="fade-up">Celebrating Love 💕</h2>
+    <p data-aos="fade-up" data-aos-delay="100">Today is YOUR day... 🎂🍰</p>
+    <p data-aos="fade-up" data-aos-delay="200">So let’s make this birthday... 🎈🎁💕</p>
+    <p data-aos="fade-up" data-aos-delay="300">I love you more than words... 💘.</p>
+    <p data-aos="fade-up" data-aos-delay="400">Take the Love Meter Quiz...!</p>
+
+    <div class="button-container" data-aos="zoom-in" data-aos-delay="500">
+      <a href="gallery.html" class="button" target="content-frame">Go to Gallery</a>
+      <a href="love-game.html" class="button" target="content-frame">Play Love Meter Game</a>
+      <a href="message.html" class="button" target="content-frame">Read Special Message</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ for Boby</p>
+  </footer>
+
+  <iframe id="content-frame" name="content-frame" style="display:none"></iframe>
+
+  <script>
+    document.querySelectorAll('.button').forEach(btn => {
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+        setTimeout(() => {
+          window.location.href = btn.href;
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>
