@@ -1,0 +1,10 @@
+# Songs are usually copyrighted: keep them on your machine.
+# The site plays its own code-made music when no song file is found.
+assets/audio/*.mp3
+assets/audio/*.m4a
+assets/audio/*.ogg
+
+.env
+.DS_Store
+Thumbs.db
+node_modules/
