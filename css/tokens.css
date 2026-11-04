@@ -1,0 +1,29 @@
+/* Design system: change colours and fonts here and the whole site follows. */
+:root {
+  --ground: #0A0C0E;
+  --ground-2: #101317;
+  --ink: #EDE7DC;
+  --ink-2: #9EA5A8;
+  --amber: #E8913C;
+  --amber-soft: #F2B36B;
+  --teal: #2E6B72;
+  --rose: #E9767A;
+  --hair: rgba(237, 231, 220, 0.13);
+
+  --display: 'Syne', system-ui, sans-serif;
+  --body: 'Sora', system-ui, sans-serif;
+  --serif: 'Instrument Serif', Georgia, serif;
+
+  --nav-h: 58px;
+  --gutter: clamp(16px, 4.5vw, 64px);
+  --max: 1240px;
+
+  /* expo-out for reveals, and a spring with a tiny overshoot for things that settle */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.22, 1.12, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 0.75, 0.2);
+
+  /* warm light, used only where something "emits" it */
+  --glow-amber: 0 0 12px 1px rgba(232, 145, 60, 0.7), 0 0 42px 8px rgba(232, 145, 60, 0.22);
+  --text-glow: 0 0 24px rgba(232, 145, 60, 0.45);
+}
